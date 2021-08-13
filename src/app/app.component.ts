@@ -181,7 +181,7 @@ export class AppComponent implements OnInit {
 
   async changeEmail(): Promise<void> {
     try {
-      await firebase.auth().currentUser.updateEmail('misirua@code.edu.az');
+      await firebase.auth().currentUser.updateEmail('email');
     }catch (e) {
       console.log(e);
     }
@@ -191,7 +191,7 @@ export class AppComponent implements OnInit {
     try {
       const appVerifier = this.windowRef2.recaptchaVerifier;
       const id = await new firebase.auth.PhoneAuthProvider()
-        .verifyPhoneNumber('+994505041246', appVerifier);
+        .verifyPhoneNumber('+phone', appVerifier);
       const code = window.prompt('Bitte zugeschickten Code eingeben');
       const cred = firebase.auth.PhoneAuthProvider.credential(id, code);
       await firebase.auth().currentUser.updatePhoneNumber(cred);
